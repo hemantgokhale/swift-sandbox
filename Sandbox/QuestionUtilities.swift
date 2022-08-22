@@ -9,14 +9,7 @@
 import Foundation
 import CommonCrypto
 
-@main
-struct Main {
-    static func main() async throws {
-        for _ in 1...5 {
-            let questionId = try await askQuestion()
-            try await answerQuestion(questionId: questionId)
-        }
-    }
+struct QuestionUtilities {
 
     static func answerQuestion(questionId: Int) async throws {
         try await updateQuestionState(questionId: questionId, newState: "ANSWERED")
@@ -30,7 +23,6 @@ struct Main {
     }
 
     // Ask a question and return its id
-
     static func askQuestion() async throws -> Int {
         let timestamp = getTimestamp()
         let question = "What is the meaning of life? - Asked at \(timestamp)"
